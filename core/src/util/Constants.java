@@ -1,5 +1,15 @@
 package util;
 
-public class Constants {
-
+/**
+ * Class to hold values that wont change.
+ * @author Justin Study
+ *
+ */
+public class Constants 
+{
+	//Visible game world is 7 meters wide
+	public static final float VIEWPORT_WIDTH = 7.0f;
+	
+	//Visible game world is 7 meters tall
+	public static final float VIEWPORT_HEIGHT = 5.0f;
 }
