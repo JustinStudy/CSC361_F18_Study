@@ -1,5 +1,6 @@
 package game;
 
-public class Assets {
+public class Assets 
+{
 
 }
