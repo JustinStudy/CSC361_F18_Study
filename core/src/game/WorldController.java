@@ -2,22 +2,29 @@ package game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
+
+import util.CameraHelper;
+
 import com.badlogic.gdx.Application.ApplicationType;
 
 public class WorldController extends InputAdapter
 {
 	private static final String TAG = WorldController.class.getName();
 	
+	public CameraHelper cameraHelper;
+	
 	public WorldController() {}
 	
 	private void init() 
 	{
 		Gdx.input.setInputProcessor(this);
+		cameraHelper = new CameraHelper();
 	}
 	
 	public void update(float deltaTime) 
 	{
 		handleDebugInput(deltaTime);
+		cameraHelper.update(deltaTime);
 	}
 	
 	private void handleDebugInput(float deltaTime)
@@ -38,4 +45,39 @@ public class WorldController extends InputAdapter
 	 * }
 	 * 
 	 */
+	
+	private void moveCamera(float x, float y)
+	{
+		x += cameraHelper.getPosition().x;
+		y += cameraHelper.getPosition().y;
+		cameraHelper.setPosition(x, y);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
