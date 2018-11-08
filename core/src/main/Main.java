@@ -10,10 +10,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import game.Assets;
 import game.WorldController;
 import game.WorldRenderer;
-
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import game.Assets;
 
 public class Main implements ApplicationListener 	
 {
@@ -27,6 +27,8 @@ public class Main implements ApplicationListener
 	{
 		//Set Libgdx log level to Debug
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
+		//Load Assets
+		Assets.instance.init(new AssetManager());
 		//Initialize controller and renderer
 		worldController = new WorldController();
 		worldRenderer = new WorldRenderer(worldController);
@@ -50,14 +52,24 @@ public class Main implements ApplicationListener
 	{
 		worldRenderer.resize(width, height);
 	}
-	
-	@Override public void pause() {}
-	
-	@Override public void resume() {}
-	
+
 	@Override public void dispose() 
 	{
 		worldRenderer.dispose();
+		Assets.instance.dispose();
+	}
+
+	
+	/**
+	 * only used for android
+	 */
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub	
+	}
+	@Override
+	public void resume() {
+		// TODO Auto-generated method stub	
 	}
 	
 	
