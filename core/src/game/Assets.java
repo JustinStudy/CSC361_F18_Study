@@ -11,6 +11,11 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
+/**
+ * Class that holds information about the assets used in the game such as images,
+ * sounds, music, and animations. 
+ * @author Justin Study
+ */
 public class Assets implements Disposable, AssetErrorListener
 {
 	public static final String TAG = Assets.class.getName();
@@ -29,6 +34,11 @@ public class Assets implements Disposable, AssetErrorListener
 	public AssetSpeedup speedup;
 	public AssetLevelDecoration levelDecoration;
 	
+	/**
+	 * initializes assetManager, creates the texture atlas, applies linear texture filtering
+	 * to our objects to make the images smoother, and assigns values to our asset variables.
+	 * @param assetManager
+	 */
 	public void init(AssetManager assetManager)
 	{
 		//set asset manager error handler
@@ -62,12 +72,21 @@ public class Assets implements Disposable, AssetErrorListener
 		levelDecoration = new AssetLevelDecoration(atlas);
 	}
 	
+	/**
+	 * Used to free unused information currently in the program
+	 */
 	@Override
 	public void dispose()
 	{
 		assetManager.dispose();
 	}
 	
+	/**
+	 * error reports in case of crash
+	 * @param filename
+	 * @param type
+	 * @param throwable
+	 */
 	public void error(String filename, Class type, Throwable throwable)
 	{
 		Gdx.app.error(TAG,  "Couldn't load asset '" + filename + "'", (Exception)throwable);
@@ -79,6 +98,11 @@ public class Assets implements Disposable, AssetErrorListener
 		Gdx.app.error(TAG,  "Couldn't load asset '" + asset.fileName + "'", (Exception)throwable);
 	}
 	
+	/**
+	 * methods below set variables to the images found in the texture atlas. This one is
+	 * for our player model. The rest should be self explanatory. 
+	 * @author spesh
+	 */
 	public class AssetPlayer
 	{
 		public final AtlasRegion player;
@@ -149,6 +173,9 @@ public class Assets implements Disposable, AssetErrorListener
 		}
 	}
 	
+	/**
+	 * Assigns the images from the texture atlas to our background variables 
+	 */
 	public class AssetLevelDecoration
 	{
 		public final AtlasRegion background;
@@ -162,8 +189,6 @@ public class Assets implements Disposable, AssetErrorListener
 			sky = atlas.findRegion("sky");
 		}
 	}
-	
-	
 }
 
 
