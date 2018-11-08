@@ -7,6 +7,11 @@ import com.badlogic.gdx.math.Vector2;
 
 import objects.AbstractGameObject;
 
+/**
+ * Holds variables and methods that will control our camera as it follows the 
+ * player around the map
+ * @author Justin Study
+ */
 public class CameraHelper 
 {
 	private static final String TAG = CameraHelper.class.getName();
@@ -17,7 +22,7 @@ public class CameraHelper
 	
 	private Vector2 position;
 	private float zoom;
-	private AbstractGameObject target;
+	private Sprite target;
 	
 	public CameraHelper ()
 	{
@@ -32,20 +37,24 @@ public class CameraHelper
 	{
 		if (!hasTarget()) return;
 		
-		position.x = target.position.x + target.origin.x;
-		position.y = target.position.y + target.origin.y;
-		
-		position.lerp(target.position, FOLLOW_SPEED * deltaTime);
-		
-		//Prevent camera from moving down too far
-		position.y = Math.max(-1f, position.y);
+		position.x = target.getX() + target.getOriginX();
+		position.y = target.getY() + target.getOriginY();
 	}
 	
+	/**
+	 * sets position of camera
+	 * @param x
+	 * @param y
+	 */
 	public void setPosition (float x, float y)
 	{
 		this.position.set(x, y);
 	}
 	
+	/**
+	 * returns position of camera
+	 * @return
+	 */
 	public Vector2 getPosition() 
 	{
 		return position;
@@ -66,13 +75,13 @@ public class CameraHelper
 		return zoom;
 	}
 	
-	public void setTarget (AbstractGameObject target)
+	public void setTarget (Sprite target)
 	{
 		this.target = target;
 	}
 	
 	
-	public AbstractGameObject getTarget ()
+	public Sprite getTarget ()
 	{
 		return target;
 	}
@@ -82,11 +91,15 @@ public class CameraHelper
 		return target != null;
 	}
 	
-	public boolean hasTarget (AbstractGameObject target)
+	public boolean hasTarget (Sprite target)
 	{
 		return hasTarget() && this.target.equals(target);
 	}
 	
+	/**
+	 * applies changes to the camera settings
+	 * @param camera
+	 */
 	public void applyTo (OrthographicCamera camera)
 	{
 		camera.position.x = position.x;
