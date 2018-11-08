@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * Holds code that controls the game environment. 
@@ -43,19 +45,18 @@ public class WorldController extends InputAdapter
 	private void initTestObjects()
 	{
 		testSprites = new Sprite[5];
-		int width = 32;
-		int height = 32;
-		
-		Pixmap pixmap = createProceduralPixmap(width, height);
-		Texture texture = new Texture(pixmap);
+		Array<TextureRegion> regions = new Array<TextureRegion>();
+		regions.add(Assets.instance.player.player);
+		regions.add(Assets.instance.coin.coin);
+		regions.add(Assets.instance.upvote.upvote);
 		for(int i = 0; i < testSprites.length; i++)
 		{
-			Sprite spr = new Sprite(texture);
-			spr.setSize(1, 1);
+			Sprite spr = new Sprite(regions.random());
+			spr.setSize(1,1);
 			spr.setOrigin(spr.getWidth()/2.0f, spr.getHeight()/2.0f);
 			float randomX = MathUtils.random(-2.0f, 2.0f);
 			float randomY = MathUtils.random(-2.0f, 2.0f);
-			spr.setPosition(randomX,  randomY);
+			spr.setPosition(randomX, randomY);
 			testSprites[i] = spr;
 		}
 		selectedSprite = 0;

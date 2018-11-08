@@ -7,53 +7,53 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 
 /**
- * class for the foreground object that will be one part of our background scene.
+ * class for the background object that will be one part of our background scene.
  * @author Justin Study
  */
-public class Foreground extends AbstractGameObject
+public class Background extends AbstractGameObject
 {
-	private TextureRegion foreImage;
+	private TextureRegion backImage;
 	private int length;
 	
-	public Foreground(int length)
+	public Background(int length)
 	{
 		this.length = length;
 		init();
 	}
 	
 	/**
-	 * initializes foreground and sets size
+	 * initializes background and sets size
 	 */
 	private void init()
 	{
-		//height and length of foreground
+		//height and length of background
 		dimension.set(10, 5);
 		
-		foreImage = Assets.instance.levelDecoration.foreground;
+		backImage = Assets.instance.levelDecoration.background;
 	}
 	
 	/**
-	 * draws the foreground part of the background scene
+	 * draws the background part of the background scene
 	 * @param batch
 	 * @param offsetX
 	 * @param offsetY
 	 * @param tintColor
 	 */
-	private void drawForeground(SpriteBatch batch, float offsetX, float offsetY, float tintColor)
+	private void drawBackground(SpriteBatch batch, float offsetX, float offsetY, float tintColor)
 	{
 		TextureRegion reg = null;
-		//black foreground
+		//gray background
 		batch.setColor(tintColor, tintColor, tintColor, 1);
 		float xRel = dimension.x * offsetX;
 		float yRel = dimension.y * offsetY;
 		
 		//foreground keeps repeating until level end
-		int foreLength = 0;
-		foreLength += MathUtils.ceil(length/dimension.x);
+		int backLength = 0;
+		backLength += MathUtils.ceil(length/dimension.x);
 		//draw mountains
-		for(int i = 0; i < foreLength; i++)
+		for(int i = 0; i < backLength; i++)
 		{
-			reg = foreImage;
+			reg = backImage;
 			batch.draw(reg.getTexture(), origin.x + xRel, position.y + origin.y + yRel, 
 					   origin.x, origin.y, dimension.x, dimension.y, scale.x, scale.y, 
 					   rotation, reg.getRegionX(), reg.getRegionY(),
@@ -67,8 +67,10 @@ public class Foreground extends AbstractGameObject
 	@Override
 	public void render(SpriteBatch batch) 
 	{
-		//black foreground
-		drawForeground(batch, 0.0f, 0.0f, 0.0f);
+		//dark gray background
+		drawBackground(batch, 0.5f, 0.5f, 0.5f);
 	}
+}	
 	
-}
+	
+	
