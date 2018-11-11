@@ -12,7 +12,8 @@ import com.badlogic.gdx.math.MathUtils;
  */
 public class Foreground extends AbstractGameObject
 {
-	private TextureRegion foreImage;
+	private TextureRegion foreImageLeft;
+	private TextureRegion foreImageRight;
 	private int length;
 	
 	public Foreground(int length)
@@ -29,7 +30,11 @@ public class Foreground extends AbstractGameObject
 		//height and length of foreground
 		dimension.set(10, 5);
 		
-		foreImage = Assets.instance.levelDecoration.foreground;
+		foreImageLeft = Assets.instance.levelDecoration.foreground;
+		foreImageRight = Assets.instance.levelDecoration.foreground;
+		
+		origin.x = -dimension.x * 2;
+		length += dimension.x * 2;
 	}
 	
 	/**
@@ -42,23 +47,32 @@ public class Foreground extends AbstractGameObject
 	private void drawForeground(SpriteBatch batch, float offsetX, float offsetY, float tintColor)
 	{
 		TextureRegion reg = null;
-		//black foreground
 		batch.setColor(tintColor, tintColor, tintColor, 1);
 		float xRel = dimension.x * offsetX;
 		float yRel = dimension.y * offsetY;
 		
-		//foreground keeps repeating until level end
-		int foreLength = 0;
-		foreLength += MathUtils.ceil(length/dimension.x);
-		//draw mountains
-		for(int i = 0; i < foreLength; i++)
-		{
-			reg = foreImage;
-			batch.draw(reg.getTexture(), origin.x + xRel, position.y + origin.y + yRel, 
-					   origin.x, origin.y, dimension.x, dimension.y, scale.x, scale.y, 
-					   rotation, reg.getRegionX(), reg.getRegionY(),
-					   reg.getRegionWidth(), reg.getRegionHeight(), false, false);
+		int fgLength = 0;
+		fgLength += MathUtils.ceil(length/(2*dimension.x));
+		fgLength += MathUtils.ceil(0.5f + offsetX);
+		for(int i = 0; i < fgLength; i++)
+		{	
+			//left foreground
+			reg = foreImageLeft;
+			batch.draw(reg.getTexture(), origin.x + xRel, position.y + origin.y +yRel, 
+					origin.x, origin.y, dimension.x, dimension.y, scale.x, scale.y, 
+					rotation, reg.getRegionX(), reg.getRegionY(), reg.getRegionWidth(),
+					reg.getRegionHeight(), false, false);
+			xRel += dimension.x;
+			
+			//right foreground
+			reg = foreImageRight;
+			batch.draw(reg.getTexture(), origin.x + xRel, position.y + origin.y +yRel, 
+					origin.x, origin.y, dimension.x, dimension.y, scale.x, scale.y, 
+					rotation, reg.getRegionX(), reg.getRegionY(), reg.getRegionWidth(),
+					reg.getRegionHeight(), false, false);
+			xRel += dimension.x;
 		}
+		batch.setColor(1,1,1,1);
 	}
 	
 	/**
@@ -68,7 +82,7 @@ public class Foreground extends AbstractGameObject
 	public void render(SpriteBatch batch) 
 	{
 		//black foreground
-		drawForeground(batch, 0.0f, 0.0f, 0.0f);
+		drawForeground(batch, 0.0f, -0.5f, 1.0f);
 	}
 	
 }

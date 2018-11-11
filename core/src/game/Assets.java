@@ -207,19 +207,19 @@ public class Assets implements Disposable, AssetErrorListener
 		public final BitmapFont defaultNormal;
 		public final BitmapFont defaultBig;
 		
-		public AssetFonts() 
+		/**
+		 * assingns fonts to the variables and calls the setScale() method to change size
+		 */
+		public AssetFonts()
 		{
-			//3 fonts 
 			defaultSmall = new BitmapFont(Gdx.files.internal("images/arial-15.fnt"), true);
 			defaultNormal = new BitmapFont(Gdx.files.internal("images/arial-15.fnt"), true);
 			defaultBig = new BitmapFont(Gdx.files.internal("images/arial-15.fnt"), true);
+					
+			defaultSmall.setScale(0.75f);
+			defaultNormal.setScale(1.0f);
+			defaultBig.setScale(2.0f);
 			
-			//set font sizes
-			defaultSmall.getData().setScale(0.75f);
-			defaultNormal.getData().setScale(1.0f);
-			defaultBig.getData().setScale(2.0f);
-			
-			//enable linear texture filtering for smooth fonts
 			defaultSmall.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 			defaultNormal.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 			defaultBig.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);

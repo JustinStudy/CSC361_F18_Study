@@ -24,7 +24,7 @@ public class Sky extends AbstractGameObject
 	 */
 	private void init()
 	{
-		dimension.set(length * 10, 3);
+		dimension.set(length * 10, 10);
 		regSky = Assets.instance.levelDecoration.sky;
 		origin.x = -dimension.x/2;
 	}
@@ -35,6 +35,7 @@ public class Sky extends AbstractGameObject
 	@Override
 	public void render(SpriteBatch batch)
 	{
+		batch.begin();
 		TextureRegion reg = null;
 		reg = regSky;
 		batch.draw(reg.getTexture(), position.x + origin.x, position.y + origin.y, 
