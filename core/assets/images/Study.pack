@@ -1,0 +1,76 @@
+
+Study.png
+size: 1888,1994
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+background
+  rotate: false
+  xy: 2, 1194
+  size: 1120, 800
+  orig: 1120, 800
+  offset: 0, 0
+  index: -1
+character
+  rotate: false
+  xy: 1124, 411
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+coin
+  rotate: false
+  xy: 1770, 1551
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+downvote
+  rotate: false
+  xy: 1124, 1315
+  size: 644, 679
+  orig: 644, 679
+  offset: 0, 0
+  index: -1
+foreground
+  rotate: false
+  xy: 2, 392
+  size: 1120, 800
+  orig: 1120, 800
+  offset: 0, 0
+  index: -1
+grass
+  rotate: false
+  xy: 1606, 1185
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+ladder
+  rotate: false
+  xy: 1770, 1609
+  size: 118, 385
+  orig: 118, 385
+  offset: 0, 0
+  index: -1
+sky
+  rotate: false
+  xy: 1124, 513
+  size: 480, 800
+  orig: 480, 800
+  offset: 0, 0
+  index: -1
+speedup
+  rotate: false
+  xy: 383, 190
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+upvote
+  rotate: false
+  xy: 2, 2
+  size: 379, 388
+  orig: 379, 388
+  offset: 0, 0
+  index: -1
